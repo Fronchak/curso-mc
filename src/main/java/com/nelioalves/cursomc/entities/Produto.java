@@ -1,13 +1,20 @@
 package com.nelioalves.cursomc.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_produto")
@@ -20,6 +27,13 @@ public class Produto implements Serializable{
 	private Integer id;
 	private String nome;
 	private Double preco;
+	
+	@JsonIgnore
+	@ManyToMany
+	@JoinTable(name="tb_produto_categoria", 
+			joinColumns=@JoinColumn(name="produto_id"),
+			inverseJoinColumns=@JoinColumn(name="categoria_id"))
+	private Set<Categoria> categorias = new HashSet<>();
 	
 	public Produto() {}
 
@@ -51,6 +65,10 @@ public class Produto implements Serializable{
 
 	public void setPreco(Double preco) {
 		this.preco = preco;
+	}
+	
+	public Set<Categoria> getCategorias() {
+		return categorias;
 	}
 
 	@Override
