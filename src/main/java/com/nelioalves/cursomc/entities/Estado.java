@@ -1,12 +1,15 @@
 package com.nelioalves.cursomc.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,9 @@ public class Estado implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
+	
+	@OneToMany(mappedBy="estado")
+	private List<Cidade> cidades = new ArrayList<>();
 	
 	public Estado() {}
 
@@ -41,6 +47,10 @@ public class Estado implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public List<Cidade> getCidades() {
+		return cidades;
 	}
 
 	@Override
