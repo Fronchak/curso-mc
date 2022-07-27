@@ -8,19 +8,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nelioalves.cursomc.entities.Estado;
-import com.nelioalves.cursomc.services.EstadoService;
+import com.nelioalves.cursomc.entities.Cidade;
+import com.nelioalves.cursomc.services.CidadeService;
 
 @RestController
-@RequestMapping(value="/estados")
-public class EstadoResource {
+@RequestMapping(value="/cidades")
+public class CidadeResource {
 
 	@Autowired
-	private EstadoService service;
+	private CidadeService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Estado>> findAll() {
-		List<Estado> list = service.findAll();
+	public ResponseEntity<List<Cidade>> findAll() {
+		List<Cidade> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 }

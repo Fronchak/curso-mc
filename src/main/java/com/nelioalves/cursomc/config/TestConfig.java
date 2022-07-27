@@ -8,8 +8,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.nelioalves.cursomc.entities.Categoria;
+import com.nelioalves.cursomc.entities.Estado;
 import com.nelioalves.cursomc.entities.Produto;
 import com.nelioalves.cursomc.repositories.CategoriaRepository;
+import com.nelioalves.cursomc.repositories.EstadoRepository;
 import com.nelioalves.cursomc.repositories.ProdutoRepository;
 
 @Configuration
@@ -22,6 +24,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private ProdutoRepository produtoRepository;
 	
+	@Autowired
+	private EstadoRepository estadoRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -32,10 +37,13 @@ public class TestConfig implements CommandLineRunner {
 		Produto p2 = new Produto(null, "Impressora", 800.00);
 		Produto p3 = new Produto(null, "Mause", 80.00);
 		
+		Estado estado1 = new Estado(null, "Paraná");
+		Estado estado2 = new Estado(null, "São Paulo");
+		
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
-
+		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
 		
 		p1.getCategorias().add(cat1);
 		p2.getCategorias().add(cat1);
