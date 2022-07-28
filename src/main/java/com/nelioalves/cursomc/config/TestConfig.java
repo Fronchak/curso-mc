@@ -71,16 +71,18 @@ public class TestConfig implements CommandLineRunner {
 		
 		Telefone tel1 = new Telefone("995259513", cliente1);
 		Telefone tel2 = new Telefone("996359844", cliente2);
+		Telefone tel3 = new Telefone("211516515", cliente1);
 		
 		Endereco end1 = new Endereco(null, "São Jose", "51616516", cliente1, cidade1);
+		Endereco end2 = new Endereco(null, "Osasco", "1516515", cliente2, cidade2);
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3, cidade4));
 		clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
-		telefoneRepository.saveAll(Arrays.asList(tel1, tel2));
-		enderecoRepository.saveAll(Arrays.asList(end1));
+		telefoneRepository.saveAll(Arrays.asList(tel1, tel2, tel3));
+		enderecoRepository.saveAll(Arrays.asList(end1, end2));
 		
 		p1.getCategorias().add(cat1);
 		p2.getCategorias().add(cat1);

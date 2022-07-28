@@ -1,6 +1,7 @@
 package com.nelioalves.cursomc.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,11 @@ public class ClienteService {
 	
 	public List<Cliente> findAll() {
 		return repository.findAll();
+	}
+	
+	public Cliente findById(Integer id) {
+		Optional<Cliente> optional = repository.findById(id);
+		return optional.get();
 	}
 	
 }
