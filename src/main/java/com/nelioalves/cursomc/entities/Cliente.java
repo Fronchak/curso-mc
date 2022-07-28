@@ -1,11 +1,14 @@
 package com.nelioalves.cursomc.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.nelioalves.cursomc.entities.enums.TipoCliente;
@@ -22,6 +25,11 @@ public class Cliente {
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@OneToMany(mappedBy="cliente")
+	private List<Telefone> telefones = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Endereco> enderecos = new ArrayList<>();
 	public Cliente() {}
 
 	public Cliente(Integer id, String name, String email, String cpfOuCnpj, TipoCliente tipo) {
@@ -63,6 +71,14 @@ public class Cliente {
 
 	public void setCpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
+	}
+	
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+	
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
 	public TipoCliente getTipo() {
