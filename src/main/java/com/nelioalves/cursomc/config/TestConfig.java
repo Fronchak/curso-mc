@@ -9,10 +9,13 @@ import org.springframework.context.annotation.Profile;
 
 import com.nelioalves.cursomc.entities.Categoria;
 import com.nelioalves.cursomc.entities.Cidade;
+import com.nelioalves.cursomc.entities.Cliente;
 import com.nelioalves.cursomc.entities.Estado;
 import com.nelioalves.cursomc.entities.Produto;
+import com.nelioalves.cursomc.entities.enums.TipoCliente;
 import com.nelioalves.cursomc.repositories.CategoriaRepository;
 import com.nelioalves.cursomc.repositories.CidadeRepository;
+import com.nelioalves.cursomc.repositories.ClienteRepository;
 import com.nelioalves.cursomc.repositories.EstadoRepository;
 import com.nelioalves.cursomc.repositories.ProdutoRepository;
 
@@ -32,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	
+	@Autowired
+	private ClienteRepository clienteRepository;
+	
 	@Override
 	public void run(String... args) throws Exception {
 		
@@ -50,11 +56,14 @@ public class TestConfig implements CommandLineRunner {
 		Cidade cidade3 = new Cidade(null, "Colombo", estado1);
 		Cidade cidade4 = new Cidade(null, "São Paulo", estado2);
 		
+		Cliente cliente1 = new Cliente(null, "Gabriel Fronchak Gmack", "gabrielgmack@gmail.com", "10719522935", TipoCliente.PESSOA_FISICA);
+		
 		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
 		estadoRepository.saveAll(Arrays.asList(estado1, estado2));
 		cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3, cidade4));
+		clienteRepository.save(cliente1);
 		
 		p1.getCategorias().add(cat1);
 		p2.getCategorias().add(cat1);
